@@ -1,6 +1,91 @@
-module.exports = templateData => {
-    // destructure page data by section
-    // const { projects, about, ...header } = templateData;
+const managerCard = function (manager) {
+  return `
+  <div class="col-4 mt-4">
+      <div class="card h-100">
+          <div class="card-header">
+              <h3>${manager.name}</h3>
+              <h4>Manager</h4>
+          </div>
+          <div class="card-body">
+              <p class="id">ID: ${manager.id}</p>
+              <p class="email">Email: <a href="mailto:${manager.email}">${manager.email}</a></p>
+              <p class="office">Office Number: ${manager.officeNum}</p>
+          </div>
+      </div>
+  </div>
+  `;
+}
+
+// creates engineer cards
+const engineerCard = function (engineer) {
+  return `
+  <div class="col-4 mt-4">
+      <div class="card h-100">
+          <div class="card-header">
+              <h3>${engineer.name}</h3>
+              <h4>Engineer</h4>
+          </div>
+          <div class="card-body">
+              <p class="id">ID: ${engineer.id}</p>
+              <p class="email">Email: <a href="mailto:${engineer.email}">${engineer.email}</a></p>
+              <p class="github">Github: <a href="https://github.com/${engineer.github}">${engineer.github}</a></p>
+          </div>
+      </div>
+  </div>
+  `;
+}
+
+// creates intern cards
+const internCard = function (intern) {
+  return `
+  <div class="col-4 mt-4">
+      <div class="card h-100">
+          <div class="card-header">
+              <h3>${intern.name}</h3>
+              <h4>Intern</h4>
+          </div>
+          <div class="card-body">
+              <p class="id">ID: ${intern.id}</p>
+              <p class="email">Email:<a href="mailto:${intern.email}">${intern.email}</a></p>
+              <p class="school">School: ${intern.school}</p>
+          </div>
+  </div>
+</div>
+  `;
+};
+
+generatePage = team => {
+  cardArr = [];
+
+  let managers = team.filter(function(member) {
+    if(member.getRole() === 'Manager') {
+      const mGroup = managerCard(member);
+      return cardArr.push(mGroup);
+    }
+  })
+  console.log(managers);
+
+  let engineers = team.filter(function(member) {
+    if(member.getRole() === 'Engineer') {
+      const eGroup = engineerCard(member);
+      return cardArr.push(eGroup);
+    }
+  })
+  console.log(engineers);
+  
+  let interns = team.filter(function(member) {
+    if(member.getRole() === 'Intern') {
+      const iGroup = internCard(member);
+      return cardArr.push(iGroup);
+    }
+  })
+  console.log(interns);
+
+  const teamCards = cardArr.join('')
+  return pageTemp(teamCards)
+}
+
+const pageTemp = teamCards => {
 
     return `
     <!DOCTYPE html>
@@ -23,9 +108,11 @@ module.exports = templateData => {
         </div>
       </header>
       <main class="container my-5">
-
+      ${teamCards}
       </main>
     </body>
     </html>
     `;
 };
+
+module.exports = generatePage;

@@ -196,10 +196,11 @@ const addMember = () => {
 };
 
 promptManager()
-.then(addMember())
-// .then(memberArr => {
-//     return template(memberArr);
-// })
+.then(addMember)
+.then(memberArr => {
+    console.log(template(memberArr));
+    return template(memberArr);
+})
 // .then(generatedHTML => {
 //     return writeFile(generatedHTML);
 // })
