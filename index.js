@@ -70,8 +70,8 @@ const promptManager = () => {
         }
     ])
     .then(managerData => {
-        const { name, id, email, officenum } = managerData;
-        const manager = new Manager(name, id, email, officenum)
+        const { name, id, email, officeNum } = managerData;
+        const manager = new Manager(name, id, email, officeNum)
 
         memberArr.push(manager);
     })
@@ -201,10 +201,10 @@ promptManager()
     console.log(template(memberArr));
     return template(memberArr);
 })
-// .then(generatedHTML => {
-//     return writeFile(generatedHTML);
-// })
-// .then(copyFile())
+.then(generatedHTML => {
+    return writeFile(generatedHTML);
+})
+.then(copyFile())
 .catch(err => {
     console.log(err);
 });

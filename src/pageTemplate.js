@@ -1,10 +1,11 @@
+//creates manager cards
 const managerCard = function (manager) {
   return `
-  <div class="col-4 mt-4">
-      <div class="card h-100">
+  <div class="col-lg-4 col-xl-5 m-2">
+      <div class="card">
           <div class="card-header">
-              <h3>${manager.name}</h3>
-              <h4>Manager</h4>
+              <h2 class="text-secondary">${manager.name}</h2>
+              <h4 class="text-secondary">Manager</h4><i class="far fa-user"></i>
           </div>
           <div class="card-body">
               <p class="id">ID: ${manager.id}</p>
@@ -19,16 +20,16 @@ const managerCard = function (manager) {
 // creates engineer cards
 const engineerCard = function (engineer) {
   return `
-  <div class="col-4 mt-4">
-      <div class="card h-100">
+  <div class="col-lg-4 col-xl-5 m-2">
+      <div class="card">
           <div class="card-header">
-              <h3>${engineer.name}</h3>
-              <h4>Engineer</h4>
+              <h2 class="text-secondary">${engineer.name}</h2>
+              <h4 class="text-secondary">Engineer</h4><i class="fas fa-user-cog"></i>
           </div>
           <div class="card-body">
               <p class="id">ID: ${engineer.id}</p>
               <p class="email">Email: <a href="mailto:${engineer.email}">${engineer.email}</a></p>
-              <p class="github">Github: <a href="https://github.com/${engineer.github}">${engineer.github}</a></p>
+              <p class="github">Github: <a href="https://github.com/${engineer.github}" target="_blank">${engineer.github}</a></p>
           </div>
       </div>
   </div>
@@ -38,11 +39,11 @@ const engineerCard = function (engineer) {
 // creates intern cards
 const internCard = function (intern) {
   return `
-  <div class="col-4 mt-4">
-      <div class="card h-100">
+  <div class="col-lg-4 col-xl-5 m-2">
+      <div class="card">
           <div class="card-header">
-              <h3>${intern.name}</h3>
-              <h4>Intern</h4>
+              <h2 class="text-secondary">${intern.name}</h2>
+              <h4 class="text-secondary">Intern</h4><i class="fas fa-coffee"></i>
           </div>
           <div class="card-body">
               <p class="id">ID: ${intern.id}</p>
@@ -54,6 +55,7 @@ const internCard = function (intern) {
   `;
 };
 
+//creates the html page using the data collected from inquirer. adds the employees to make it complete
 generatePage = team => {
   cardArr = [];
 
@@ -85,6 +87,7 @@ generatePage = team => {
   return pageTemp(teamCards)
 }
 
+//overall page template
 const pageTemp = teamCards => {
 
     return `
@@ -104,11 +107,13 @@ const pageTemp = teamCards => {
     <body>
       <header>
         <div class="container flex-row justify-space-between align-center py-3">
-          <h1 class="page-title text-secondary bg-dark py-2 px-3">header</h1>
+          <h1 class="page-title text-secondary bg-dark py-2 px-3 align-center">My Team</h1>
         </div>
       </header>
       <main class="container my-5">
-      ${teamCards}
+        <div class="flex-row justify-center">
+          ${teamCards}
+        </div>
       </main>
     </body>
     </html>
