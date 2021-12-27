@@ -17,7 +17,7 @@ This project was created to allow a manager to create a team html consisting of 
 The first thing to do is to download the zip from github and extract the files whereever you want on your computer. Then open it in VS code. Next, open the terminal and install Node, inquirer, and Jest. To install Node use "npm init" in the terminal. To install inquirer, use "npm install inquirer" in the terminal. To install Jest, use "npm install --save-dev jest" in the terminal. 
 
 ## Usage 
-
+https://watch.screencastify.com/v/M9yqIHcIKqtfKK1Fuc3v
 
 The link above is a video on how to run the application.
 
