@@ -14,6 +14,7 @@ const Engineer = require('./lib/Engineer');
 //team member array
 const memberArr = [];
 
+//asks the user questions in regards to the manager in order to add them to the team
 const promptManager = () => {
     return inquirer.prompt([
         {
@@ -58,20 +59,20 @@ const promptManager = () => {
         {
             type: 'input',
             name: 'officeNumber',
-            message: "What is manager's office number?",
+            message: "What is manager's office number? do not include dashes",
             validate: officeInput => {
                 if (officeInput) {
                     return true;
                 } else {
-                    console.log("please enter manager's office number");
+                    console.log("please enter manager's office number!");
                     return false;
                 }
             }
         }
     ])
     .then(managerData => {
-        const { name, id, email, officeNum } = managerData;
-        const manager = new Manager(name, id, email, officeNum)
+        const { name, id, email, office } = managerData;
+        const manager = new Manager(name, id, email, office)
 
         memberArr.push(manager);
     })
@@ -134,7 +135,7 @@ const addMember = () => {
         {
             type: 'input',
             name: 'git',
-            message: "What is the employee's github username.",
+            message: "What is the employee's github username?",
             when: (input) => input.role === "Engineer",
             validate: gitInput => {
                 if (gitInput ) {
@@ -195,10 +196,10 @@ const addMember = () => {
 
 };
 
+//the starts the application. shows the flow of the application as well
 promptManager()
 .then(addMember)
 .then(memberArr => {
-    console.log(template(memberArr));
     return template(memberArr);
 })
 .then(generatedHTML => {

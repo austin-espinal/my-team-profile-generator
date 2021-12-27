@@ -10,7 +10,7 @@ const managerCard = function (manager) {
           <div class="card-body">
               <p class="id">ID: ${manager.id}</p>
               <p class="email">Email: <a href="mailto:${manager.email}">${manager.email}</a></p>
-              <p class="office">Office Number: ${manager.officeNum}</p>
+              <p class="office">Office Number: ${manager.office}</p>
           </div>
       </div>
   </div>
@@ -29,7 +29,7 @@ const engineerCard = function (engineer) {
           <div class="card-body">
               <p class="id">ID: ${engineer.id}</p>
               <p class="email">Email: <a href="mailto:${engineer.email}">${engineer.email}</a></p>
-              <p class="github">Github: <a href="https://github.com/${engineer.github}" target="_blank">${engineer.github}</a></p>
+              <p class="github">Github: <a href="https://github.com/${engineer.git}" target="_blank">${engineer.git}</a></p>
           </div>
       </div>
   </div>
@@ -47,7 +47,7 @@ const internCard = function (intern) {
           </div>
           <div class="card-body">
               <p class="id">ID: ${intern.id}</p>
-              <p class="email">Email:<a href="mailto:${intern.email}">${intern.email}</a></p>
+              <p class="email">Email: <a href="mailto:${intern.email}">${intern.email}</a></p>
               <p class="school">School: ${intern.school}</p>
           </div>
   </div>
@@ -65,7 +65,7 @@ generatePage = team => {
       return cardArr.push(mGroup);
     }
   })
-  console.log(managers);
+  // console.log(managers);
 
   let engineers = team.filter(function(member) {
     if(member.getRole() === 'Engineer') {
@@ -73,7 +73,7 @@ generatePage = team => {
       return cardArr.push(eGroup);
     }
   })
-  console.log(engineers);
+  // console.log(engineers);
   
   let interns = team.filter(function(member) {
     if(member.getRole() === 'Intern') {
@@ -81,7 +81,7 @@ generatePage = team => {
       return cardArr.push(iGroup);
     }
   })
-  console.log(interns);
+  // console.log(interns);
 
   const teamCards = cardArr.join('')
   return pageTemp(teamCards)
