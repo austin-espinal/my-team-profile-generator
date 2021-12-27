@@ -10,7 +10,7 @@ const managerCard = function (manager) {
           <div class="card-body">
               <p class="id">ID: ${manager.id}</p>
               <p class="email">Email: <a href="mailto:${manager.email}">${manager.email}</a></p>
-              <p class="office">Office Number: ${manager.office}</p>
+              <p class="office">Office Number: ${manager.officeNum}</p>
           </div>
       </div>
   </div>
@@ -65,7 +65,6 @@ generatePage = team => {
       return cardArr.push(mGroup);
     }
   })
-  // console.log(managers);
 
   let engineers = team.filter(function(member) {
     if(member.getRole() === 'Engineer') {
@@ -73,7 +72,6 @@ generatePage = team => {
       return cardArr.push(eGroup);
     }
   })
-  // console.log(engineers);
   
   let interns = team.filter(function(member) {
     if(member.getRole() === 'Intern') {
@@ -81,7 +79,6 @@ generatePage = team => {
       return cardArr.push(iGroup);
     }
   })
-  // console.log(interns);
 
   const teamCards = cardArr.join('')
   return pageTemp(teamCards)

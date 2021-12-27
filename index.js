@@ -58,7 +58,7 @@ const promptManager = () => {
         },
         {
             type: 'input',
-            name: 'officeNumber',
+            name: 'officeNum',
             message: "What is manager's office number? do not include dashes",
             validate: officeInput => {
                 if (officeInput) {
@@ -71,9 +71,10 @@ const promptManager = () => {
         }
     ])
     .then(managerData => {
-        const { name, id, email, office } = managerData;
-        const manager = new Manager(name, id, email, office)
+        const { name, id, email, officeNum } = managerData;
+        const manager = new Manager(name, id, email, officeNum)
 
+        console.log(manager);
         memberArr.push(manager);
     })
 };
@@ -203,9 +204,11 @@ promptManager()
     return template(memberArr);
 })
 .then(generatedHTML => {
+    console.log('File created!');
     return writeFile(generatedHTML);
 })
 .then(copyFile())
 .catch(err => {
     console.log(err);
+    console.log('File not created!');
 });
